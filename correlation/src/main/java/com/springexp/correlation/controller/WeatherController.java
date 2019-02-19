@@ -1,5 +1,6 @@
 package com.springexp.correlation.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,11 +13,9 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.Map;
 
-
 @RestController
+@Slf4j
 public class WeatherController {
-
-    Logger log = LoggerFactory.getLogger(WeatherController.class);
 
     @Value("${api.weather.host}")
     String weatherAPIHost;
