@@ -1,0 +1,13 @@
+server:
+  port: 9000
+api:
+  weather:
+    host: https://api.openweathermap.org/data/2.5/weather
+    appid: 61619572aeb46c268edd0b7750c3f4c2
+logging:
+  level:
+    org:
+      springframework: INFO
+    com:
+      springexp:
+        correlation: DEBUG
