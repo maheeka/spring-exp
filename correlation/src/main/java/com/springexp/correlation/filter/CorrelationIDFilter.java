@@ -1,16 +1,14 @@
 package com.springexp.correlation.filter;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.UUID;
 
 import static com.springexp.correlation.Constants.X_CORRELATION_ID;
 
@@ -34,8 +32,8 @@ public class CorrelationIDFilter implements Filter {
         if (xCorrelationID != null) {
             log.info("Received request with Correlation ID : {}", xCorrelationID);
         } else {
-            // TODO : generate a correlation ID
-            xCorrelationID = "generated";
+            xCorrelationID = UUID.randomUUID().toString();
+            log.info("Generated UUID : {}", xCorrelationID);
         }
 
         MDC.put(X_CORRELATION_ID, xCorrelationID);

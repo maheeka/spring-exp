@@ -1,8 +1,6 @@
 package com.springexp.correlation.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,12 +27,14 @@ public class WeatherController {
 
         String getWeatherByCityUrl = weatherAPIHost + "?q={city}&appid={appId}";
 
+        log.info("Getting weather : {}",getWeatherByCityUrl);
         ResponseEntity<Map> response = restTemplate.getForEntity(getWeatherByCityUrl, Map.class, city, weatherAPIAppId);
 
         log.info("Weather in {} response : {} ", city, response.getBody());
 
         String weatherDescription = (String) ((Map) ((List) response.getBody().get("weather")).get(0)).get("description");
 
+        log.info("Returning weather : {}", weatherDescription);
         return "Weather today is " + weatherDescription + "\n";
     }
 
