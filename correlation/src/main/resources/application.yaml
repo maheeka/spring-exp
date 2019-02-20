@@ -11,3 +11,5 @@ logging:
     com:
       springexp:
         correlation: DEBUG
+  path: logs
+  file: Correlation.log
