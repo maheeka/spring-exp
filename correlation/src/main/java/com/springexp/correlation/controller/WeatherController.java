@@ -1,6 +1,7 @@
 package com.springexp.correlation.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,9 @@ import java.util.Map;
 @Slf4j
 public class WeatherController {
 
+    @Autowired
+    RestTemplate restTemplate;
+
     @Value("${api.weather.host}")
     String weatherAPIHost;
 
@@ -23,8 +27,6 @@ public class WeatherController {
 
     @RequestMapping("/today")
     public String getWeatherToday(@RequestParam(value = "city") String city) {
-        RestTemplate restTemplate = new RestTemplate();
-
         String getWeatherByCityUrl = weatherAPIHost + "?q={city}&appid={appId}";
 
         log.info("Getting weather : {}",getWeatherByCityUrl);
